@@ -1,0 +1,7 @@
+{
+  "name": "studytime",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
