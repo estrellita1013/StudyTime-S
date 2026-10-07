@@ -1,58 +1,118 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
-/* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* StudyTime - tema claro */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
-ion-content { --background: var(--st-gray-100); }
-ion-toolbar { --background: #ffffff; --border-width: 0; }
-ion-tab-bar { --background: #ffffff; --color-selected: var(--st-emerald); }
+html,
+body,
+ion-app {
+  background: #ffffff;
+  color: #000000;
+}
+
+body {
+  color: #000000;
+}
+
+ion-content {
+  --background: #f5f5f5;
+  --color: #000000;
+  color: #000000;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #000000;
+  --border-width: 0;
+  color: #000000;
+}
+
+ion-title {
+  color: #000000;
+}
+
+ion-tab-bar {
+  --background: #ffffff;
+  --color: #000000;
+  --color-selected: var(--st-emerald);
+}
+
+ion-tab-button {
+  --color: #000000;
+  --color-selected: var(--st-emerald);
+}
+
+ion-label,
+ion-text,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  color: #000000;
+}
 
 .st-card {
-  background: #fff;
+  background: #ffffff;
+  color: #000000;
   border-radius: 24px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
-.st-btn { --border-radius: 999px; height: 56px; font-weight: 600; }
+
+.st-btn {
+  --border-radius: 999px;
+  height: 56px;
+  font-weight: 600;
+}
+
 .st-label {
-  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--st-gray-400); font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000000;
+  font-weight: 600;
 }
+
 .st-icon-box {
-  width: 56px; height: 56px; border-radius: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
   background: var(--st-emerald-soft);
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.st-icon-box ion-icon { font-size: 28px; color: var(--st-emerald-dark); }
+
+.st-icon-box ion-icon {
+  font-size: 28px;
+  color: var(--st-emerald-dark);
+}
+
+ion-input,
+ion-textarea,
+ion-select {
+  --color: #000000;
+  color: #000000;
+}
+
+ion-item {
+  --background: #ffffff;
+  --color: #000000;
+  color: #000000;
+}
+
+ion-button {
+  --color: #000000;
+}
