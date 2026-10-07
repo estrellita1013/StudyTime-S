@@ -6,19 +6,44 @@ import { fmtClock } from '../utils/time';
 export class TimerService {
   seconds = signal(0);
   running = signal(false);
+
   type = signal<ActivityType>('estudio');
   targetMin = signal(45);
-  subject = signal('');   // materia elegida en Estudiar
-  topic = signal('');     // tema elegido en Estudiar
+
+  subject = signal('');
+  topic = signal('');
+
   display = computed(() => fmtClock(this.seconds()));
-  private handle: any;
+
+  private handle?: ReturnType<typeof setInterval>;
+  private startedAt = 0;
 
   start() {
     if (this.running()) return;
+
     this.running.set(true);
-    const t0 = Date.now() - this.seconds() * 1000; // se calcula con la hora real, no se desfasa
-    this.handle = setInterval(() => this.seconds.set(Math.floor((Date.now() - t0) / 1000)), 250);
+
+    // Conserva el tiempo acumulado al reanudar.
+    this.startedAt = Date.now() - this.seconds() * 1000;
+
+    this.handle = setInterval(() => {
+      const elapsed = Math.floor((Date.now() - this.startedAt) / 1000);
+      this.seconds.set(elapsed);
+    }, 250);
   }
-  pause() { clearInterval(this.handle); this.running.set(false); }
-  reset() { this.pause(); this.seconds.set(0); }
+
+  pause() {
+    if (this.handle) {
+      clearInterval(this.handle);
+      this.handle = undefined;
+    }
+
+    this.running.set(false);
+  }
+
+  reset() {
+    this.pause();
+    this.seconds.set(0);
+    this.startedAt = 0;
+  }
 }

@@ -9,46 +9,112 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/* StudyTime - tema claro */
+/* =========================================================
+   STUDYTIME - IDENTIDAD VISUAL UAPA
+   ========================================================= */
+
+:root {
+
+  /* Colores institucionales */
+  --uapa-blue: #005baa;
+  --uapa-blue-dark: #004985;
+  --uapa-blue-light: #eaf3fb;
+
+  --uapa-orange: #f58220;
+  --uapa-orange-dark: #d96d0b;
+  --uapa-orange-light: #fff1e5;
+
+  /* Colores generales */
+  --st-background: #f5f7fa;
+  --st-surface: #ffffff;
+  --st-text: #172033;
+  --st-text-secondary: #64748b;
+  --st-border: #e5e7eb;
+
+  /* Estados */
+  --st-success: #16a34a;
+  --st-danger: #dc2626;
+  --st-warning: var(--uapa-orange);
+
+  /* Compatibilidad con estilos existentes */
+  --st-emerald: var(--uapa-orange);
+  --st-emerald-dark: var(--uapa-orange-dark);
+  --st-emerald-soft: var(--uapa-orange-light);
+  --st-gray-200: #e5e7eb;
+  --st-gray-400: #64748b;
+
+  /* Ionic */
+  --ion-color-primary: var(--uapa-blue);
+  --ion-color-secondary: var(--uapa-orange);
+
+  --ion-background-color: var(--st-background);
+  --ion-text-color: var(--st-text);
+
+  --ion-color-primary-rgb: 0, 91, 170;
+  --ion-color-secondary-rgb: 245, 130, 32;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 html,
 body,
 ion-app {
-  background: #ffffff;
-  color: #000000;
+  background: var(--st-background);
+  color: var(--st-text);
 }
 
 body {
-  color: #000000;
+  margin: 0;
+  color: var(--st-text);
+  background: var(--st-background);
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
 
 ion-content {
-  --background: #f5f5f5;
-  --color: #000000;
-  color: #000000;
+  --background: var(--st-background);
+  --color: var(--st-text);
+  color: var(--st-text);
 }
+
+/* =========================================================
+   BARRA SUPERIOR
+   ========================================================= */
 
 ion-toolbar {
-  --background: #ffffff;
-  --color: #000000;
+  --background: var(--uapa-blue);
+  --color: #ffffff;
   --border-width: 0;
-  color: #000000;
+  color: #ffffff;
+  min-height: 56px;
 }
 
-ion-title {
-  color: #000000;
+ion-toolbar ion-title {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
-ion-tab-bar {
-  --background: #ffffff;
-  --color: #000000;
-  --color-selected: var(--st-emerald);
+ion-toolbar ion-icon {
+  color: #ffffff;
 }
 
-ion-tab-button {
-  --color: #000000;
-  --color-selected: var(--st-emerald);
+ion-toolbar ion-button {
+  --color: #ffffff;
 }
+
+ion-back-button {
+  --color: #ffffff;
+}
+
+/* =========================================================
+   TITULOS Y TEXTO
+   ========================================================= */
 
 ion-label,
 ion-text,
@@ -60,36 +126,85 @@ h4,
 h5,
 h6,
 span {
-  color: #000000;
+  color: var(--st-text);
 }
 
+p {
+  color: var(--st-text-secondary);
+}
+
+/* =========================================================
+   TARJETAS STUDYTIME
+   ========================================================= */
+
 .st-card {
-  background: #ffffff;
-  color: #000000;
-  border-radius: 24px;
+  background: var(--st-surface);
+  color: var(--st-text);
+  border-radius: 20px;
   padding: 20px;
+  border: 1px solid var(--st-border);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
 .st-btn {
-  --border-radius: 999px;
-  height: 56px;
-  font-weight: 600;
+  --background: var(--uapa-orange);
+  --background-activated: var(--uapa-orange-dark);
+  --background-hover: var(--uapa-orange-dark);
+  --color: #ffffff;
+  --border-radius: 14px;
+
+  height: 54px;
+  font-weight: 700;
+  text-transform: none;
 }
+
+.st-btn::part(native) {
+  box-shadow: 0 5px 14px rgba(245, 130, 32, 0.25);
+}
+
+ion-button {
+  --border-radius: 14px;
+  --color: var(--uapa-blue);
+  font-weight: 600;
+  text-transform: none;
+}
+
+ion-button[color="primary"] {
+  --background: var(--uapa-blue);
+  --color: #ffffff;
+}
+
+ion-button[color="secondary"] {
+  --background: var(--uapa-orange);
+  --color: #ffffff;
+}
+
+/* =========================================================
+   ETIQUETAS
+   ========================================================= */
 
 .st-label {
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #000000;
-  font-weight: 600;
+  color: var(--uapa-blue);
+  font-weight: 700;
 }
+
+/* =========================================================
+   ICONOS
+   ========================================================= */
 
 .st-icon-box {
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: var(--st-emerald-soft);
+  background: var(--uapa-orange-light);
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,22 +212,128 @@ span {
 
 .st-icon-box ion-icon {
   font-size: 28px;
-  color: var(--st-emerald-dark);
+  color: var(--uapa-orange);
 }
+
+/* =========================================================
+   FORMULARIOS
+   ========================================================= */
 
 ion-input,
 ion-textarea,
 ion-select {
-  --color: #000000;
-  color: #000000;
+  --color: var(--st-text);
+  --placeholder-color: #94a3b8;
+  color: var(--st-text);
 }
 
 ion-item {
-  --background: #ffffff;
-  --color: #000000;
-  color: #000000;
+  --background: var(--st-surface);
+  --color: var(--st-text);
+  --border-color: var(--st-border);
+
+  color: var(--st-text);
 }
 
-ion-button {
-  --color: #000000;
+/* =========================================================
+   SEGMENTOS
+   ========================================================= */
+
+ion-segment {
+  --background: var(--uapa-blue-light);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+ion-segment-button {
+  --color: var(--st-text-secondary);
+  --color-checked: #ffffff;
+  --indicator-color: var(--uapa-blue);
+
+  min-height: 42px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   RANGE / PROGRESO
+   ========================================================= */
+
+ion-range {
+  --bar-background: #dbe4ee;
+  --bar-background-active: var(--uapa-orange);
+  --knob-background: var(--uapa-orange);
+  --pin-background: var(--uapa-blue);
+}
+
+ion-progress-bar {
+  --background: #dbe4ee;
+  --progress-background: var(--uapa-orange);
+  border-radius: 999px;
+  height: 8px;
+}
+
+/* =========================================================
+   NAVEGACIÓN INFERIOR
+   ========================================================= */
+
+ion-tab-bar {
+  --background: #ffffff;
+  --color: #64748b;
+  --color-selected: var(--uapa-orange);
+
+  border-top: 1px solid var(--st-border);
+  height: 64px;
+}
+
+ion-tab-button {
+  --color: #64748b;
+  --color-selected: var(--uapa-orange);
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+ion-tab-button ion-icon {
+  font-size: 22px;
+}
+
+ion-tab-button.tab-selected {
+  color: var(--uapa-orange);
+}
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.st-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  background: var(--uapa-blue-light);
+  color: var(--uapa-blue);
+}
+
+.st-badge.orange {
+  background: var(--uapa-orange-light);
+  color: var(--uapa-orange-dark);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+  ion-content {
+    --padding-start: 24px;
+    --padding-end: 24px;
+  }
+
 }

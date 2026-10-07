@@ -1,0 +1,81 @@
+/* =========================================
+   STUDYTIME - MENÚ LATERAL
+   ========================================= */
+
+.menu-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.uapa-logo {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.uapa-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-text strong {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.brand-text span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+}
+
+/* Lista del menú */
+
+ion-menu ion-list {
+  padding-top: 8px;
+}
+
+ion-menu ion-item {
+  --background: transparent;
+  --color: var(--st-text);
+
+  margin: 3px 10px;
+  border-radius: 12px;
+}
+
+ion-menu ion-item ion-icon {
+  color: var(--uapa-blue);
+  font-size: 22px;
+}
+
+ion-menu ion-item:hover {
+  --background: var(--uapa-blue-light);
+}
+
+/* Títulos de sección */
+
+.menu-section-title {
+  padding: 18px 20px 7px;
+
+  color: var(--uapa-orange);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+}

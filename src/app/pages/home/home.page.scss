@@ -1,0 +1,308 @@
+:host {
+  display: block;
+}
+
+/* ================================
+   CONEXIÓN
+   ================================ */
+
+.connection-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 14px;
+}
+
+.connection-row ion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.connection-row ion-icon {
+  font-size: 14px;
+}
+
+/* ================================
+   BIENVENIDA
+   ================================ */
+
+.welcome {
+  margin-bottom: 22px;
+}
+
+.welcome h1 {
+  margin: 5px 0 4px;
+
+  font-size: 27px;
+  font-weight: 800;
+
+  color: var(--st-text);
+}
+
+.welcome p {
+  margin: 0;
+
+  font-size: 14px;
+  color: var(--st-text-secondary);
+}
+
+/* ================================
+   TARJETA DE PROGRESO
+   ================================ */
+
+.progress-card {
+  background: #ffffff;
+
+  border: 1px solid var(--st-border);
+
+  border-radius: 22px;
+
+  padding: 22px;
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.06);
+
+  margin-bottom: 14px;
+}
+
+.progress-title {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.progress-title h2 {
+  margin: 7px 0 2px;
+
+  font-size: 32px;
+  font-weight: 800;
+
+  color: var(--uapa-blue);
+}
+
+.progress-title p {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: var(--st-text-secondary);
+}
+
+.ring-value {
+  font-size: 16px;
+  font-weight: 800;
+
+  color: var(--uapa-blue);
+}
+
+/* ================================
+   MENSAJE DE PROGRESO
+   ================================ */
+
+.progress-message {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 13px 15px;
+
+  margin-bottom: 20px;
+
+  background: var(--uapa-orange-light);
+
+  border-radius: 14px;
+
+  color: var(--uapa-orange-dark);
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.progress-message ion-icon {
+  flex-shrink: 0;
+
+  font-size: 21px;
+
+  color: var(--uapa-orange);
+}
+
+/* ================================
+   SESIÓN ACTIVA
+   ================================ */
+
+.live {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 22px;
+
+  border-left: 5px solid var(--uapa-orange);
+
+  cursor: pointer;
+}
+
+.live-info strong {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 25px;
+
+  color: var(--uapa-blue);
+}
+
+.link {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: var(--uapa-blue);
+
+  font-weight: 700;
+
+  font-size: 13px;
+}
+
+.link ion-icon {
+  font-size: 17px;
+}
+
+/* ================================
+   SECCIONES
+   ================================ */
+
+.section-heading {
+  margin: 22px 0 10px;
+}
+
+/* ================================
+   ACCESOS RÁPIDOS
+   ================================ */
+
+.grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 12px;
+}
+
+.tile {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 135px;
+
+  padding: 18px 10px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.tile:active {
+  transform: scale(0.97);
+}
+
+.tile strong {
+  font-size: 14px;
+
+  color: var(--st-text);
+
+  text-align: center;
+}
+
+.tile .st-icon-box {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 15px;
+}
+
+.tile .st-icon-box ion-icon {
+  font-size: 26px;
+}
+
+/* ================================
+   CONSEJO
+   ================================ */
+
+.loading {
+  display: flex;
+
+  justify-content: center;
+
+  padding: 25px;
+}
+
+.tip-card {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+}
+
+.tip-card ion-icon {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  font-size: 23px;
+
+  color: var(--uapa-orange);
+}
+
+.tip-card p {
+  margin: 0;
+
+  line-height: 1.5;
+}
+
+/* ================================
+   TABLET / PC
+   ================================ */
+
+@media (min-width: 768px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(5, 1fr);
+  }
+
+  .tile {
+    min-height: 145px;
+  }
+
+}

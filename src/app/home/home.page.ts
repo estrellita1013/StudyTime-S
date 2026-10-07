@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+
 import {
   IonHeader,
   IonToolbar,
@@ -7,14 +8,18 @@ import {
   IonContent,
   IonIcon,
   IonButton,
+  IonButtons,
+  IonMenuButton,
   IonCard,
   IonCardContent,
   IonGrid,
   IonRow,
   IonCol,
   IonProgressBar
-} from '@ionic/angular/standalone';
+} from '@ionic/angular';
+
 import { addIcons } from 'ionicons';
+
 import {
   bookOutline,
   trophyOutline,
@@ -24,8 +29,10 @@ import {
   musicalNotesOutline,
   wifiOutline,
   cloudOfflineOutline,
-  timeOutline
+  timeOutline,
+  personOutline
 } from 'ionicons/icons';
+
 import { Subscription } from 'rxjs';
 
 import { StorageService } from '../services/storage.service';
@@ -42,6 +49,8 @@ import { NetworkService } from '../services/network.service';
     IonContent,
     IonIcon,
     IonButton,
+    IonButtons,
+    IonMenuButton,
     IonCard,
     IonCardContent,
     IonGrid,
@@ -53,22 +62,28 @@ import { NetworkService } from '../services/network.service';
 export class HomePage implements OnInit, OnDestroy {
 
   userName = 'Estudiante';
+
   goalHours = 2;
+
   studiedSeconds = 0;
 
   subjectsCount = 0;
+
   goalsCount = 0;
 
   online = true;
 
   private networkSubscription?: Subscription;
 
+
   constructor(
     private storage: StorageService,
     private network: NetworkService,
-    private router: Router
+    public router: Router
   ) {
+
     addIcons({
+
       bookOutline,
       trophyOutline,
       calendarOutline,
@@ -77,94 +92,208 @@ export class HomePage implements OnInit, OnDestroy {
       musicalNotesOutline,
       wifiOutline,
       cloudOfflineOutline,
-      timeOutline
+      timeOutline,
+      personOutline
+
     });
+
   }
+
 
   async ngOnInit() {
+
     await this.loadDashboard();
 
-    this.networkSubscription = this.network.online$.subscribe(status => {
-      this.online = status;
-    });
+    this.networkSubscription =
+      this.network.online$.subscribe(status => {
+
+        this.online = status;
+
+      });
+
   }
+
 
   async loadDashboard() {
-    const profile = await this.storage.getProfile();
-    const sessions = await this.storage.getSessions();
-    const subjects = await this.storage.getSubjects();
-    const goals = await this.storage.getGoals();
 
-    this.userName = profile.name || 'Estudiante';
-    this.goalHours = profile.goalHours || 2;
+    const profile =
+      await this.storage.getProfile();
 
-    this.subjectsCount = subjects.length;
-    this.goalsCount = goals.length;
+    const sessions =
+      await this.storage.getSessions();
 
-    const today = new Date();
+    const subjects =
+      await this.storage.getSubjects();
 
-    today.setHours(0, 0, 0, 0);
+    const goals =
+      await this.storage.getGoals();
 
-    this.studiedSeconds = sessions
-      .filter(session => {
-        const date = new Date(session.date);
-        return date >= today;
-      })
-      .reduce((total, session) => total + session.seconds, 0);
+
+    this.userName =
+      profile.name || 'Estudiante';
+
+
+    this.goalHours =
+      profile.goalHours || 2;
+
+
+    this.subjectsCount =
+      subjects.length;
+
+
+    this.goalsCount =
+      goals.length;
+
+
+    const today =
+      new Date();
+
+    today.setHours(
+      0,
+      0,
+      0,
+      0
+    );
+
+
+    this.studiedSeconds =
+      sessions
+
+        .filter(session => {
+
+          const date =
+            new Date(session.date);
+
+          return date >= today;
+
+        })
+
+        .reduce(
+          (total, session) =>
+            total + session.seconds,
+          0
+        );
+
   }
+
 
   get goalSeconds(): number {
+
     return this.goalHours * 60 * 60;
+
   }
+
 
   get progress(): number {
+
     if (this.goalSeconds <= 0) {
+
       return 0;
+
     }
 
-    return Math.min(this.studiedSeconds / this.goalSeconds, 1);
+    return Math.min(
+      this.studiedSeconds /
+      this.goalSeconds,
+      1
+    );
+
   }
+
 
   get progressPercent(): number {
-    return Math.round(this.progress * 100);
+
+    return Math.round(
+      this.progress * 100
+    );
+
   }
+
 
   get studiedTime(): string {
-    const hours = Math.floor(this.studiedSeconds / 3600);
-    const minutes = Math.floor((this.studiedSeconds % 3600) / 60);
+
+    const hours =
+      Math.floor(
+        this.studiedSeconds / 3600
+      );
+
+
+    const minutes =
+      Math.floor(
+        (this.studiedSeconds % 3600) / 60
+      );
+
 
     if (hours > 0) {
+
       return `${hours}h ${minutes}min`;
+
     }
 
+
     return `${minutes} min`;
+
   }
+
 
   startStudy() {
-    this.router.navigate(['/estudiar']);
+
+    this.router.navigate([
+      '/estudiar'
+    ]);
+
   }
+
 
   openSubjects() {
-    this.router.navigate(['/materias']);
+
+    this.router.navigate([
+      '/materias'
+    ]);
+
   }
+
 
   openGoals() {
-    this.router.navigate(['/metas']);
+
+    this.router.navigate([
+      '/metas'
+    ]);
+
   }
+
 
   openCalendar() {
-    this.router.navigate(['/calendario']);
+
+    this.router.navigate([
+      '/calendario'
+    ]);
+
   }
+
 
   openStats() {
-    this.router.navigate(['/estadisticas']);
+
+    this.router.navigate([
+      '/estadisticas'
+    ]);
+
   }
+
 
   openSounds() {
-    this.router.navigate(['/estudiar']);
+
+    this.router.navigate([
+      '/estudiar'
+    ]);
+
   }
 
+
   ngOnDestroy() {
+
     this.networkSubscription?.unsubscribe();
+
   }
+
 }

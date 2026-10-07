@@ -1,63 +1,293 @@
 import { Injectable, inject } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Assignment, Goal, Note, Profile, Session, Subject } from '../models/models';
+
+import {
+  Assignment,
+  Goal,
+  Note,
+  Profile,
+  Session,
+  Subject
+} from '../models/models';
+
 import { UiService } from './ui.services';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class StorageService {
-   private store = new Storage({ name: 'studytime_db' });
-  private ready = this.store.create(); // abre la base local una sola vez
+
+  private store = new Storage({
+    name: 'studytime_db'
+  });
+
+  private ready = this.store.create();
+
   private ui = inject(UiService);
+
+  // =========================================================
+  // ALMACENAMIENTO GENERAL
+  // =========================================================
 
   async get<T>(key: string, fallback: T): Promise<T> {
     await this.ready;
+
     const value = (await this.store.get(key)) ?? fallback;
+
     this.ui.refresh();
+
     return value;
   }
-  async set(key: string, value: unknown) {
+
+  async set(key: string, value: unknown): Promise<void> {
     await this.ready;
+
     await this.store.set(key, value);
+
     this.ui.refresh();
   }
 
-  // ---- Sesiones ----
-  getSessions() { return this.get<Session[]>('sessions', []); }
-  async addSession(s: Session) { const all = await this.getSessions(); await this.set('sessions', [s, ...all]); }
-  async updateSession(s: Session) { const all = await this.getSessions(); await this.set('sessions', all.map(x => x.id === s.id ? s : x)); }
-  async deleteSession(id: string) { const all = await this.getSessions(); await this.set('sessions', all.filter(x => x.id !== id)); }
-  // Segundos estudiados desde una fecha (y, si se indica, solo de una materia)
-  async secondsSince(from: Date, subject?: string) {
-    const all = await this.getSessions();
-    return all.filter(s => new Date(s.date) >= from && (!subject || s.subject === subject)).reduce((n, s) => n + s.seconds, 0);
+  // =========================================================
+  // SESIONES
+  // =========================================================
+
+  getSessions(): Promise<Session[]> {
+    return this.get<Session[]>('sessions', []);
   }
 
-  // ---- Perfil ----
-  getProfile() { return this.get<Profile>('profile', { name: 'Estudiante', career: '', goalHours: 4 }); }
-  saveProfile(p: Profile) { return this.set('profile', p); }
+  async addSession(session: Session): Promise<void> {
+    const sessions = await this.getSessions();
 
-  // ---- Notas ----
-  getNotes() { return this.get<Note[]>('notes', []); }
-  async addNote(n: Note) { const all = await this.getNotes(); await this.set('notes', [n, ...all]); }
-  async deleteNote(id: string) { const all = await this.getNotes(); await this.set('notes', all.filter(x => x.id !== id)); }
-
-  // ---- Materias (cada materia guarda sus temas) ----
-  async getSubjects() {
-    const all = await this.get<Subject[]>('subjects', []);
-    return all.map(s => ({ ...s, topics: s.topics ?? [] })); // por si hay materias guardadas sin temas
+    await this.set('sessions', [
+      session,
+      ...sessions
+    ]);
   }
-  async addSubject(name: string) { const all = await this.getSubjects(); await this.set('subjects', [...all, { id: Date.now().toString(), name, topics: [] }]); }
-  async updateSubject(s: Subject) { const all = await this.getSubjects(); await this.set('subjects', all.map(x => x.id === s.id ? s : x)); }
-  async deleteSubject(id: string) { const all = await this.getSubjects(); await this.set('subjects', all.filter(x => x.id !== id)); }
 
-  // ---- Entregas (se ven en el Calendario) ----
-  getAssignments() { return this.get<Assignment[]>('assignments', []); }
-  async addAssignment(a: Assignment) { const all = await this.getAssignments(); await this.set('assignments', [...all, a]); }
-  async updateAssignment(a: Assignment) { const all = await this.getAssignments(); await this.set('assignments', all.map(x => x.id === a.id ? a : x)); }
-  async deleteAssignment(id: string) { const all = await this.getAssignments(); await this.set('assignments', all.filter(x => x.id !== id)); }
+  async updateSession(session: Session): Promise<void> {
+    const sessions = await this.getSessions();
 
-  // ---- Metas ----
-  getGoals() { return this.get<Goal[]>('goals', []); }
-  async addGoal(g: Goal) { const all = await this.getGoals(); await this.set('goals', [...all, g]); }
-  async deleteGoal(id: string) { const all = await this.getGoals(); await this.set('goals', all.filter(x => x.id !== id)); }
+    await this.set(
+      'sessions',
+      sessions.map(s =>
+        s.id === session.id ? session : s
+      )
+    );
+  }
+
+  async deleteSession(id: string): Promise<void> {
+    const sessions = await this.getSessions();
+
+    await this.set(
+      'sessions',
+      sessions.filter(s => s.id !== id)
+    );
+  }
+
+  async secondsSince(
+    from: Date,
+    subject?: string
+  ): Promise<number> {
+
+    const sessions = await this.getSessions();
+
+    return sessions
+      .filter(session =>
+        new Date(session.date) >= from &&
+        (!subject || session.subject === subject)
+      )
+      .reduce(
+        (total, session) => total + session.seconds,
+        0
+      );
+  }
+
+  // =========================================================
+  // PERFIL
+  // =========================================================
+
+  getProfile(): Promise<Profile> {
+    return this.get<Profile>(
+      'profile',
+      {
+        name: 'Estudiante',
+        career: '',
+        goalHours: 4
+      }
+    );
+  }
+
+  saveProfile(profile: Profile): Promise<void> {
+    return this.set('profile', profile);
+  }
+
+  // =========================================================
+  // NOTAS
+  // =========================================================
+
+  getNotes(): Promise<Note[]> {
+    return this.get<Note[]>('notes', []);
+  }
+
+  async addNote(note: Note): Promise<void> {
+    const notes = await this.getNotes();
+
+    await this.set('notes', [
+      note,
+      ...notes
+    ]);
+  }
+
+  async deleteNote(id: string): Promise<void> {
+    const notes = await this.getNotes();
+
+    await this.set(
+      'notes',
+      notes.filter(note => note.id !== id)
+    );
+  }
+
+  // =========================================================
+  // MATERIAS
+  // =========================================================
+
+  async getSubjects(): Promise<Subject[]> {
+    const subjects = await this.get<Subject[]>(
+      'subjects',
+      []
+    );
+
+    return subjects.map(subject => ({
+      ...subject,
+      topics: subject.topics ?? []
+    }));
+  }
+
+  async addSubject(name: string): Promise<void> {
+    const subjects = await this.getSubjects();
+
+    await this.set(
+      'subjects',
+      [
+        ...subjects,
+        {
+          id: Date.now().toString(),
+          name,
+          topics: []
+        }
+      ]
+    );
+  }
+
+  async updateSubject(subject: Subject): Promise<void> {
+    const subjects = await this.getSubjects();
+
+    await this.set(
+      'subjects',
+      subjects.map(s =>
+        s.id === subject.id ? subject : s
+      )
+    );
+  }
+
+  async deleteSubject(id: string): Promise<void> {
+    const subjects = await this.getSubjects();
+
+    await this.set(
+      'subjects',
+      subjects.filter(subject =>
+        subject.id !== id
+      )
+    );
+  }
+
+  // =========================================================
+  // ENTREGAS / CALENDARIO
+  // =========================================================
+
+  getAssignments(): Promise<Assignment[]> {
+    return this.get<Assignment[]>(
+      'assignments',
+      []
+    );
+  }
+
+  async addAssignment(
+    assignment: Assignment
+  ): Promise<void> {
+
+    const assignments = await this.getAssignments();
+
+    await this.set(
+      'assignments',
+      [
+        ...assignments,
+        assignment
+      ]
+    );
+  }
+
+  async updateAssignment(
+    assignment: Assignment
+  ): Promise<void> {
+
+    const assignments = await this.getAssignments();
+
+    await this.set(
+      'assignments',
+      assignments.map(a =>
+        a.id === assignment.id
+          ? assignment
+          : a
+      )
+    );
+  }
+
+  async deleteAssignment(id: string): Promise<void> {
+
+    const assignments = await this.getAssignments();
+
+    await this.set(
+      'assignments',
+      assignments.filter(a =>
+        a.id !== id
+      )
+    );
+  }
+
+  // =========================================================
+  // METAS
+  // =========================================================
+
+  getGoals(): Promise<Goal[]> {
+    return this.get<Goal[]>(
+      'goals',
+      []
+    );
+  }
+
+  async addGoal(goal: Goal): Promise<void> {
+
+    const goals = await this.getGoals();
+
+    await this.set(
+      'goals',
+      [
+        ...goals,
+        goal
+      ]
+    );
+  }
+
+  async deleteGoal(id: string): Promise<void> {
+
+    const goals = await this.getGoals();
+
+    await this.set(
+      'goals',
+      goals.filter(g =>
+        g.id !== id
+      )
+    );
+  }
 }

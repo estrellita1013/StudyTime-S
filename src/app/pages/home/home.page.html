@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>StudyTime</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        routerLink="/tabs/perfil">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Estado de conexión -->
+  <div class="connection-row">
+    <ion-badge
+      [color]="(net.online$ | async) ? 'primary' : 'dark'">
+
+      <ion-icon
+        [name]="(net.online$ | async) ? 'wifi-outline' : 'cloud-offline-outline'">
+      </ion-icon>
+
+      {{ (net.online$ | async) ? 'En línea' : 'Sin conexión' }}
+
+    </ion-badge>
+  </div>
+
+  <!-- Saludo -->
+  <div class="welcome">
+    <div class="st-label">DASHBOARD</div>
+
+    <h1>Hola, {{ name }}</h1>
+
+    <p>
+      Organiza tu tiempo y avanza en tus estudios.
+    </p>
+  </div>
+
+  <!-- Progreso del día -->
+  <div class="progress-card">
+
+    <div class="progress-title">
+      <div>
+        <span class="st-label">PROGRESO DE HOY</span>
+
+        <h2>{{ fmt(today) }}</h2>
+
+        <p>
+          de {{ goal / 3600 }}h de meta diaria
+        </p>
+      </div>
+
+      <app-progress-ring [value]="goal > 0 ? today / goal : 0">
+        <div class="ring-value">
+          {{ goal > 0 ? ((today / goal) * 100 | number:'1.0-0') : 0 }}%
+        </div>
+      </app-progress-ring>
+
+    </div>
+
+  </div>
+
+  <!-- Mensaje de progreso -->
+  <div class="progress-message">
+
+    <ion-icon name="trophy-outline"></ion-icon>
+
+    <span>
+      {{
+        today >= goal
+          ? '¡Meta cumplida, excelente trabajo!'
+          : '¡Vas por buen camino! Falta poco para tu meta.'
+      }}
+    </span>
+
+  </div>
+
+  <!-- Sesión activa -->
+  @if (timer.seconds() > 0) {
+
+    <div
+      class="st-card live"
+      routerLink="/sesion">
+
+      <div class="live-info">
+
+        <div class="st-label">
+          SESIÓN EN CURSO
+        </div>
+
+        <strong>
+          {{ timer.display() }}
+        </strong>
+
+      </div>
+
+      <span class="link">
+        Volver
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </span>
+
+    </div>
+
+  }
+
+  <!-- Acciones principales -->
+  <div class="section-heading">
+    <div class="st-label">ACCESOS RÁPIDOS</div>
+  </div>
+
+  <div class="grid">
+
+    @for (m of menu; track m.url) {
+
+      <div
+        class="st-card tile"
+        [routerLink]="m.url">
+
+        <div class="st-icon-box">
+          <ion-icon [name]="m.icon"></ion-icon>
+        </div>
+
+        <strong>
+          {{ m.label }}
+        </strong>
+
+      </div>
+
+    }
+
+  </div>
+
+  <!-- Consejo -->
+  <div class="section-heading">
+    <div class="st-label">CONSEJO DEL DÍA</div>
+  </div>
+
+  @if (loading && !tips.length) {
+
+    <div class="loading">
+      <ion-spinner
+        name="crescent"
+        color="primary">
+      </ion-spinner>
+    </div>
+
+  }
+
+  @if (error) {
+
+    <div class="st-card">
+      <p class="sub">
+        No se pudo cargar el consejo en este momento.
+      </p>
+    </div>
+
+  }
+
+  @for (t of tips; track t.id) {
+
+    <div class="st-card tip-card">
+
+      <ion-icon name="bulb-outline"></ion-icon>
+
+      <p>
+        {{ t.body }}
+      </p>
+
+    </div>
+
+  }
+
+</ion-content>
