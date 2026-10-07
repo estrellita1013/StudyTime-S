@@ -1,2 +1,57 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+:root {
+  /* Paleta StudyTime */
+  --st-emerald: #10B981;
+  --st-emerald-dark: #047857;
+  --st-emerald-soft: #D1FAE5;
+  --st-gray-100: #F3F4F6;
+  --st-gray-200: #E5E7EB;
+  --st-gray-400: #9CA3AF;
+  --st-black: #111111;
+  --st-white: #FFFFFF;
+
+  --ion-font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --ion-background-color: var(--st-gray-100);
+  --ion-text-color: var(--st-black);
+
+  /* primary = verde esmeralda */
+  --ion-color-primary: #10B981;
+  --ion-color-primary-rgb: 16, 185, 129;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0ea373;
+  --ion-color-primary-tint: #28c08f;
+
+  /* success = mismo esmeralda */
+  --ion-color-success: #10B981;
+  --ion-color-success-rgb: 16, 185, 129;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #0ea373;
+  --ion-color-success-tint: #28c08f;
+
+  /* dark = negro */
+  --ion-color-dark: #111111;
+  --ion-color-dark-rgb: 17, 17, 17;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #0f0f0f;
+  --ion-color-dark-tint: #292929;
+
+  /* medium = gris */
+  --ion-color-medium: #9ca3af;
+  --ion-color-medium-rgb: 156, 163, 175;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #8a9099;
+  --ion-color-medium-tint: #a7adb9;
+
+  /* light = gris claro */
+  --ion-color-light: #f3f4f6;
+  --ion-color-light-rgb: 243, 244, 246;
+  --ion-color-light-contrast: #111111;
+  --ion-color-light-contrast-rgb: 17, 17, 17;
+  --ion-color-light-shade: #d6d7d9;
+  --ion-color-light-tint: #f4f5f7;
+}
