@@ -10,49 +10,72 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 /* =========================================================
-   STUDYTIME - IDENTIDAD VISUAL UAPA
+   STUDYTIME - IDENTIDAD VISUAL
    ========================================================= */
 
 :root {
 
-  /* Colores institucionales */
-  --uapa-blue: #005baa;
-  --uapa-blue-dark: #004985;
-  --uapa-blue-light: #eaf3fb;
+  /* =======================================================
+     COLORES PRINCIPALES
+     ======================================================= */
+
+  --uapa-blue: #080840;
+  --uapa-blue-dark: #05052d;
+  --uapa-blue-light: #f0f0fa;
 
   --uapa-orange: #f58220;
   --uapa-orange-dark: #d96d0b;
   --uapa-orange-light: #fff1e5;
 
-  /* Colores generales */
+
+  /* =======================================================
+     COLORES GENERALES
+     ======================================================= */
+
   --st-background: #f5f7fa;
   --st-surface: #ffffff;
+
   --st-text: #172033;
   --st-text-secondary: #64748b;
+
   --st-border: #e5e7eb;
 
-  /* Estados */
+
+  /* =======================================================
+     ESTADOS
+     ======================================================= */
+
   --st-success: #16a34a;
   --st-danger: #dc2626;
   --st-warning: var(--uapa-orange);
 
-  /* Compatibilidad con estilos existentes */
+
+  /* =======================================================
+     COMPATIBILIDAD CON ESTILOS EXISTENTES
+     ======================================================= */
+
   --st-emerald: var(--uapa-orange);
   --st-emerald-dark: var(--uapa-orange-dark);
   --st-emerald-soft: var(--uapa-orange-light);
+
   --st-gray-200: #e5e7eb;
   --st-gray-400: #64748b;
 
-  /* Ionic */
+
+  /* =======================================================
+     IONIC
+     ======================================================= */
+
   --ion-color-primary: var(--uapa-blue);
   --ion-color-secondary: var(--uapa-orange);
 
   --ion-background-color: var(--st-background);
   --ion-text-color: var(--st-text);
 
-  --ion-color-primary-rgb: 0, 91, 170;
+  --ion-color-primary-rgb: 8, 8, 64;
   --ion-color-secondary-rgb: 245, 130, 32;
 }
+
 
 /* =========================================================
    BASE
@@ -67,10 +90,13 @@ ion-app {
 
 body {
   margin: 0;
+
   color: var(--st-text);
   background: var(--st-background);
+
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 /* =========================================================
    CONTENIDO
@@ -79,38 +105,58 @@ body {
 ion-content {
   --background: var(--st-background);
   --color: var(--st-text);
+
   color: var(--st-text);
 }
+
 
 /* =========================================================
    BARRA SUPERIOR
    ========================================================= */
 
 ion-toolbar {
-  --background: var(--uapa-blue);
+  --background: #080840;
   --color: #ffffff;
+
   --border-width: 0;
+
   color: #ffffff;
+
   min-height: 56px;
 }
 
+
+/* Título */
+
 ion-toolbar ion-title {
   color: #ffffff;
+
   font-weight: 700;
+
   letter-spacing: -0.01em;
 }
+
+
+/* Iconos */
 
 ion-toolbar ion-icon {
   color: #ffffff;
 }
 
+
+/* Botones */
+
 ion-toolbar ion-button {
   --color: #ffffff;
 }
 
+
+/* Botón regresar */
+
 ion-back-button {
   --color: #ffffff;
 }
+
 
 /* =========================================================
    TITULOS Y TEXTO
@@ -133,18 +179,25 @@ p {
   color: var(--st-text-secondary);
 }
 
+
 /* =========================================================
    TARJETAS STUDYTIME
    ========================================================= */
 
 .st-card {
   background: var(--st-surface);
+
   color: var(--st-text);
+
   border-radius: 20px;
+
   padding: 20px;
+
   border: 1px solid var(--st-border);
+
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
+
 
 /* =========================================================
    BOTONES
@@ -155,10 +208,13 @@ p {
   --background-activated: var(--uapa-orange-dark);
   --background-hover: var(--uapa-orange-dark);
   --color: #ffffff;
+
   --border-radius: 14px;
 
   height: 54px;
+
   font-weight: 700;
+
   text-transform: none;
 }
 
@@ -168,8 +224,11 @@ p {
 
 ion-button {
   --border-radius: 14px;
+
   --color: var(--uapa-blue);
+
   font-weight: 600;
+
   text-transform: none;
 }
 
@@ -183,17 +242,23 @@ ion-button[color="secondary"] {
   --color: #ffffff;
 }
 
+
 /* =========================================================
    ETIQUETAS
    ========================================================= */
 
 .st-label {
   font-size: 12px;
+
   letter-spacing: 0.08em;
+
   text-transform: uppercase;
+
   color: var(--uapa-blue);
+
   font-weight: 700;
 }
+
 
 /* =========================================================
    ICONOS
@@ -202,18 +267,23 @@ ion-button[color="secondary"] {
 .st-icon-box {
   width: 56px;
   height: 56px;
+
   border-radius: 16px;
+
   background: var(--uapa-orange-light);
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 }
 
 .st-icon-box ion-icon {
   font-size: 28px;
+
   color: var(--uapa-orange);
 }
+
 
 /* =========================================================
    FORMULARIOS
@@ -223,17 +293,22 @@ ion-input,
 ion-textarea,
 ion-select {
   --color: var(--st-text);
+
   --placeholder-color: #94a3b8;
+
   color: var(--st-text);
 }
 
 ion-item {
   --background: var(--st-surface);
+
   --color: var(--st-text);
+
   --border-color: var(--st-border);
 
   color: var(--st-text);
 }
+
 
 /* =========================================================
    SEGMENTOS
@@ -241,18 +316,24 @@ ion-item {
 
 ion-segment {
   --background: var(--uapa-blue-light);
+
   border-radius: 12px;
+
   padding: 4px;
 }
 
 ion-segment-button {
   --color: var(--st-text-secondary);
+
   --color-checked: #ffffff;
+
   --indicator-color: var(--uapa-blue);
 
   min-height: 42px;
+
   font-weight: 600;
 }
+
 
 /* =========================================================
    RANGE / PROGRESO
@@ -260,17 +341,24 @@ ion-segment-button {
 
 ion-range {
   --bar-background: #dbe4ee;
+
   --bar-background-active: var(--uapa-orange);
+
   --knob-background: var(--uapa-orange);
+
   --pin-background: var(--uapa-blue);
 }
 
 ion-progress-bar {
   --background: #dbe4ee;
+
   --progress-background: var(--uapa-orange);
+
   border-radius: 999px;
+
   height: 8px;
 }
+
 
 /* =========================================================
    NAVEGACIÓN INFERIOR
@@ -278,18 +366,23 @@ ion-progress-bar {
 
 ion-tab-bar {
   --background: #ffffff;
+
   --color: #64748b;
+
   --color-selected: var(--uapa-orange);
 
   border-top: 1px solid var(--st-border);
+
   height: 64px;
 }
 
 ion-tab-button {
   --color: #64748b;
+
   --color-selected: var(--uapa-orange);
 
   font-size: 11px;
+
   font-weight: 600;
 }
 
@@ -301,29 +394,37 @@ ion-tab-button.tab-selected {
   color: var(--uapa-orange);
 }
 
+
 /* =========================================================
    BADGES
    ========================================================= */
 
 .st-badge {
   display: inline-flex;
+
   align-items: center;
+
   gap: 6px;
 
   padding: 6px 10px;
+
   border-radius: 999px;
 
   font-size: 12px;
+
   font-weight: 700;
 
   background: var(--uapa-blue-light);
+
   color: var(--uapa-blue);
 }
 
 .st-badge.orange {
   background: var(--uapa-orange-light);
+
   color: var(--uapa-orange-dark);
 }
+
 
 /* =========================================================
    RESPONSIVE
@@ -333,6 +434,7 @@ ion-tab-button.tab-selected {
 
   ion-content {
     --padding-start: 24px;
+
     --padding-end: 24px;
   }
 

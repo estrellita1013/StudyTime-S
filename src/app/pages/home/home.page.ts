@@ -86,6 +86,49 @@ export class HomePage {
 
   fmt = fmtHM;
 
+
+  // =========================================
+  // CONSEJOS LOCALES
+  // =========================================
+
+  private localTips: Tip[] = [
+    {
+      id: 1,
+      title: 'Consejo del día',
+      body: 'Organiza tu tiempo y comienza por la tarea más importante.'
+    },
+    {
+      id: 2,
+      title: 'Consejo del día',
+      body: 'Estudiar un poco cada día es mejor que dejar todo para el último momento.'
+    },
+    {
+      id: 3,
+      title: 'Consejo del día',
+      body: 'Elimina las distracciones y dedica unos minutos de concentración total a tus estudios.'
+    },
+    {
+      id: 4,
+      title: 'Consejo del día',
+      body: 'Haz una pausa cuando la necesites. Descansar también forma parte de estudiar bien.'
+    },
+    {
+      id: 5,
+      title: 'Consejo del día',
+      body: 'Define una meta para cada sesión de estudio y trabaja hasta conseguirla.'
+    },
+    {
+      id: 6,
+      title: 'Consejo del día',
+      body: 'La constancia convierte pequeños esfuerzos en grandes resultados.'
+    }
+  ];
+
+
+  // =========================================
+  // ACCESOS RÁPIDOS
+  // =========================================
+
   menu = [
     {
       label: 'Materias',
@@ -114,6 +157,7 @@ export class HomePage {
     }
   ];
 
+
   constructor(
     public net: NetworkService,
     public timer: TimerService,
@@ -129,7 +173,6 @@ export class HomePage {
       trophyOutline,
       arrowForwardOutline,
       bulbOutline,
-
       libraryOutline,
       timeOutline,
       trendingUpOutline,
@@ -139,29 +182,61 @@ export class HomePage {
 
   }
 
+
+  // =========================================
+  // ENTRAR AL DASHBOARD
+  // =========================================
+
   ionViewWillEnter() {
-    return this.load();
+
+    this.load();
+
   }
+
+
+  // =========================================
+  // CARGAR DASHBOARD
+  // =========================================
 
   async load() {
 
     this.loading = true;
 
+    this.error = false;
+
+
+    // =========================================
+    // MOSTRAR CONSEJO INMEDIATAMENTE
+    // =========================================
+
+    const day =
+      new Date().getDate() %
+      this.localTips.length;
+
+    this.tips = [
+      this.localTips[day]
+    ];
+
+
+    // =========================================
+    // CARGAR PERFIL Y TIEMPO
+    // =========================================
+
     try {
 
-      const profile = await this.storage.getProfile();
+      const profile =
+        await this.storage.getProfile();
 
-      this.name = profile.name || 'Estudiante';
+      this.name =
+        profile.name || 'Estudiante';
 
-      this.goal = (profile.goalHours || 4) * 3600;
+      this.goal =
+        (profile.goalHours || 4) * 3600;
 
       this.today =
-        await this.storage.secondsSince(startOfToday());
-
-      this.tips =
-        await this.api.getTips();
-
-      this.error = this.tips.length === 0;
+        await this.storage.secondsSince(
+          startOfToday()
+        );
 
     } catch (error) {
 
@@ -170,14 +245,21 @@ export class HomePage {
         error
       );
 
-      this.error = true;
-
-    } finally {
-
-      this.loading = false;
-
     }
+
+
+    // =========================================
+    // TERMINAR CARGA
+    // =========================================
+
+    this.loading = false;
+
   }
+
+
+  // =========================================
+  // ACTUALIZAR
+  // =========================================
 
   async refresh(event: any) {
 
