@@ -1,20 +1,207 @@
-<ion-header [translucent]="true">
+﻿<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>StudyTime</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="dashboard">
+
+    <!-- Estado de conexión -->
+    <div class="connection-status" [class.offline]="!online">
+      <ion-icon [name]="online ? 'wifi-outline' : 'cloud-offline-outline'"></ion-icon>
+
+      <span>
+        {{ online ? 'En línea' : 'Modo offline' }}
+      </span>
+    </div>
+
+    <!-- Saludo -->
+    <section class="welcome-section">
+      <p class="eyebrow">HOY</p>
+
+      <h1>
+        Hola, {{ userName }} 👋
+      </h1>
+
+      <p class="subtitle">
+        Organiza tu tiempo y aprovecha mejor tus horas de estudio.
+      </p>
+    </section>
+
+    <!-- Resumen principal -->
+    <ion-card class="main-card">
+      <ion-card-content>
+
+        <div class="main-card-header">
+          <div>
+            <p class="card-label">TIEMPO ESTUDIADO</p>
+
+            <h2>
+              {{ studiedTime }}
+            </h2>
+
+            <p class="goal-text">
+              Meta diaria: {{ goalHours }}h
+            </p>
+          </div>
+
+          <div class="time-icon">
+            <ion-icon name="time-outline"></ion-icon>
+          </div>
+        </div>
+
+        <div class="progress-info">
+          <span>Progreso de hoy</span>
+          <strong>{{ progressPercent }}%</strong>
+        </div>
+
+        <ion-progress-bar [value]="progress"></ion-progress-bar>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botón comenzar -->
+    <ion-button
+      expand="block"
+      class="start-button"
+      (click)="startStudy()">
+
+      <ion-icon slot="start" name="play-circle-outline"></ion-icon>
+
+      Comenzar a estudiar
+    </ion-button>
+
+    <!-- Accesos rápidos -->
+    <section class="section">
+
+      <div class="section-header">
+        <h2>Accesos rápidos</h2>
+      </div>
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col size="6">
+            <ion-card
+              class="quick-card"
+              button="true"
+              (click)="openSubjects()">
+
+              <ion-card-content>
+                <div class="quick-icon">
+                  <ion-icon name="book-outline"></ion-icon>
+                </div>
+
+                <h3>Materias</h3>
+
+                <p>
+                  {{ subjectsCount }}
+                  {{ subjectsCount === 1 ? 'materia' : 'materias' }}
+                </p>
+              </ion-card-content>
+
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card
+              class="quick-card"
+              button="true"
+              (click)="openGoals()">
+
+              <ion-card-content>
+                <div class="quick-icon">
+                  <ion-icon name="trophy-outline"></ion-icon>
+                </div>
+
+                <h3>Metas</h3>
+
+                <p>
+                  {{ goalsCount }}
+                  {{ goalsCount === 1 ? 'meta' : 'metas' }}
+                </p>
+              </ion-card-content>
+
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card
+              class="quick-card"
+              button="true"
+              (click)="openCalendar()">
+
+              <ion-card-content>
+                <div class="quick-icon">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                </div>
+
+                <h3>Calendario</h3>
+
+                <p>Organiza tus entregas</p>
+              </ion-card-content>
+
+            </ion-card>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-card
+              class="quick-card"
+              button="true"
+              (click)="openStats()">
+
+              <ion-card-content>
+                <div class="quick-icon">
+                  <ion-icon name="stats-chart-outline"></ion-icon>
+                </div>
+
+                <h3>Estadísticas</h3>
+
+                <p>Revisa tu progreso</p>
+              </ion-card-content>
+
+            </ion-card>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+    </section>
+
+    <!-- Sonidos -->
+    <ion-card
+      class="sound-card"
+      button="true"
+      (click)="openSounds()">
+
+      <ion-card-content>
+
+        <div class="sound-content">
+
+          <div class="sound-icon">
+            <ion-icon name="musical-notes-outline"></ion-icon>
+          </div>
+
+          <div class="sound-text">
+            <h3>Sonidos para estudiar</h3>
+            <p>
+              Música y sonidos ambientales para concentrarte.
+            </p>
+          </div>
+
+          <ion-icon
+            class="arrow-icon"
+            name="play-circle-outline">
+          </ion-icon>
+
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
   </div>
+
 </ion-content>
