@@ -80,6 +80,7 @@ export class MultimediaPage {
   error = '';
 
   constructor(
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     private youtube: YouTubeService
   ) {
 

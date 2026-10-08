@@ -1,299 +1,66 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonIcon,
-  IonButton,
-  IonButtons,
-  IonMenuButton,
-  IonCard,
-  IonCardContent,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonProgressBar
-} from '@ionic/angular';
-
-import { addIcons } from 'ionicons';
-
-import {
-  bookOutline,
-  trophyOutline,
-  calendarOutline,
-  statsChartOutline,
-  playCircleOutline,
-  musicalNotesOutline,
-  wifiOutline,
-  cloudOfflineOutline,
-  timeOutline,
-  personOutline
-} from 'ionicons/icons';
-
-import { Subscription } from 'rxjs';
-
+import { HomePage } from './home.page';
 import { StorageService } from '../services/storage.service';
 import { NetworkService } from '../services/network.service';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonContent,
-    IonIcon,
-    IonButton,
-    IonButtons,
-    IonMenuButton,
-    IonCard,
-    IonCardContent,
-    IonGrid,
-    IonRow,
-    IonCol,
-    IonProgressBar
-  ],
-})
-export class HomePage implements OnInit, OnDestroy {
+describe('HomePage', () => {
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
 
-  userName = 'Estudiante';
+  const storageServiceMock = {
+    getProfile: jasmine.createSpy('getProfile').and.resolveTo({
+      name: 'Estudiante',
+      goalHours: 2
+    }),
 
-  goalHours = 2;
+    getSessions: jasmine.createSpy('getSessions').and.resolveTo([]),
 
-  studiedSeconds = 0;
+    getSubjects: jasmine.createSpy('getSubjects').and.resolveTo([]),
 
-  subjectsCount = 0;
+    getGoals: jasmine.createSpy('getGoals').and.resolveTo([])
+  };
 
-  goalsCount = 0;
-
-  online = true;
-
-  private networkSubscription?: Subscription;
-
-
-  constructor(
-    private storage: StorageService,
-    private network: NetworkService,
-    public router: Router
-  ) {
-
-    addIcons({
-
-      bookOutline,
-      trophyOutline,
-      calendarOutline,
-      statsChartOutline,
-      playCircleOutline,
-      musicalNotesOutline,
-      wifiOutline,
-      cloudOfflineOutline,
-      timeOutline,
-      personOutline
-
-    });
-
-  }
-
-
-  async ngOnInit() {
-
-    await this.loadDashboard();
-
-    this.networkSubscription =
-      this.network.online$.subscribe(status => {
-
-        this.online = status;
-
-      });
-
-  }
-
-
-  async loadDashboard() {
-
-    const profile =
-      await this.storage.getProfile();
-
-    const sessions =
-      await this.storage.getSessions();
-
-    const subjects =
-      await this.storage.getSubjects();
-
-    const goals =
-      await this.storage.getGoals();
-
-
-    this.userName =
-      profile.name || 'Estudiante';
-
-
-    this.goalHours =
-      profile.goalHours || 2;
-
-
-    this.subjectsCount =
-      subjects.length;
-
-
-    this.goalsCount =
-      goals.length;
-
-
-    const today =
-      new Date();
-
-    today.setHours(
-      0,
-      0,
-      0,
-      0
-    );
-
-
-    this.studiedSeconds =
-      sessions
-
-        .filter(session => {
-
-          const date =
-            new Date(session.date);
-
-          return date >= today;
-
-        })
-
-        .reduce(
-          (total, session) =>
-            total + session.seconds,
-          0
-        );
-
-  }
-
-
-  get goalSeconds(): number {
-
-    return this.goalHours * 60 * 60;
-
-  }
-
-
-  get progress(): number {
-
-    if (this.goalSeconds <= 0) {
-
-      return 0;
-
+  const networkServiceMock = {
+    online$: {
+      subscribe: jasmine.createSpy('subscribe').and.callFake(() => ({
+        unsubscribe: jasmine.createSpy('unsubscribe')
+      }))
     }
+  };
 
-    return Math.min(
-      this.studiedSeconds /
-      this.goalSeconds,
-      1
-    );
+  const routerMock = {
+    navigate: jasmine.createSpy('navigate').and.resolveTo(true)
+  };
 
-  }
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HomePage],
+      providers: [
+        {
+          provide: StorageService,
+          useValue: storageServiceMock
+        },
+        {
+          provide: NetworkService,
+          useValue: networkServiceMock
+        },
+        {
+          provide: Router,
+          useValue: routerMock
+        }
+      ]
+    }).compileComponents();
 
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
 
-  get progressPercent(): number {
+    await fixture.whenStable();
+    fixture.detectChanges();
+  });
 
-    return Math.round(
-      this.progress * 100
-    );
-
-  }
-
-
-  get studiedTime(): string {
-
-    const hours =
-      Math.floor(
-        this.studiedSeconds / 3600
-      );
-
-
-    const minutes =
-      Math.floor(
-        (this.studiedSeconds % 3600) / 60
-      );
-
-
-    if (hours > 0) {
-
-      return `${hours}h ${minutes}min`;
-
-    }
-
-
-    return `${minutes} min`;
-
-  }
-
-
-  startStudy() {
-
-    this.router.navigate([
-      '/estudiar'
-    ]);
-
-  }
-
-
-  openSubjects() {
-
-    this.router.navigate([
-      '/materias'
-    ]);
-
-  }
-
-
-  openGoals() {
-
-    this.router.navigate([
-      '/metas'
-    ]);
-
-  }
-
-
-  openCalendar() {
-
-    this.router.navigate([
-      '/calendario'
-    ]);
-
-  }
-
-
-  openStats() {
-
-    this.router.navigate([
-      '/estadisticas'
-    ]);
-
-  }
-
-
-  openSounds() {
-
-    this.router.navigate([
-      '/estudiar'
-    ]);
-
-  }
-
-
-  ngOnDestroy() {
-
-    this.networkSubscription?.unsubscribe();
-
-  }
-
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

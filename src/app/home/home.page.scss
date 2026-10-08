@@ -4,9 +4,7 @@
   margin: 0 auto;
 }
 
-/* =========================
-   CONEXIÓN
-========================= */
+/* CONEXIÓN */
 
 .connection-status {
   display: inline-flex;
@@ -34,9 +32,7 @@
   color: #dc2626;
 }
 
-/* =========================
-   SALUDO
-========================= */
+/* SALUDO*/
 
 .welcome-section {
   margin-bottom: 20px;
@@ -73,9 +69,7 @@
   color: #6b7280;
 }
 
-/* =========================
-   TARJETA PRINCIPAL
-========================= */
+/* TARJETA PRINCIPAL  */
 
 .main-card {
   margin: 0 0 14px;
@@ -144,9 +138,7 @@
   color: #34d399;
 }
 
-/* =========================
-   PROGRESO
-========================= */
+/* PROGRESO */
 
 .progress-info {
   display: flex;
@@ -174,9 +166,7 @@
   border-radius: 20px;
 }
 
-/* =========================
-   BOTÓN ESTUDIAR
-========================= */
+/* BOTÓN ESTUDIAR */
 
 .start-button {
   margin: 0 0 26px;
@@ -199,9 +189,7 @@
   font-size: 23px;
 }
 
-/* =========================
-   SECCIÓN
-========================= */
+/* SECCIÓN */
 
 .section {
   margin-top: 4px;
@@ -224,9 +212,7 @@
   color: #111827;
 }
 
-/* =========================
-   GRID
-========================= */
+/*  GRID */
 
 ion-grid {
   padding: 0;
@@ -240,9 +226,7 @@ ion-col {
   padding: 5px;
 }
 
-/* =========================
-   ACCESOS RÁPIDOS
-========================= */
+/*  ACCESOS RÁPIDOS */
 
 .quick-card {
   margin: 0;
@@ -306,9 +290,7 @@ ion-col {
   color: #6b7280;
 }
 
-/* =========================
-   SONIDOS
-========================= */
+/*  SONIDOS */
 
 .sound-card {
   margin: 18px 0 0;
@@ -382,9 +364,7 @@ ion-col {
   color: #10b981;
 }
 
-/* =========================
-   MODO OSCURO
-========================= */
+/* MODO OSCURO */
 
 @media (prefers-color-scheme: dark) {
 
@@ -416,9 +396,7 @@ ion-col {
   }
 }
 
-/* =========================
-   PANTALLAS GRANDES
-========================= */
+/*    PANTALLAS GRANDES */
 
 @media (min-width: 768px) {
 

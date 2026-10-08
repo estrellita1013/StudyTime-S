@@ -1,20 +1,14 @@
-/* =========================================
-   STUDYTIME - MENÚ LATERAL
-   IDENTIDAD VISUAL
-   ========================================= */
+/* STUDYTIME - MENÚ LATERAL
+   IDENTIDAD VISUAL  */
 
-/* =========================================
-   CONFIGURACIÓN DEL MENÚ
-   ========================================= */
+/* CONFIGURACIÓN DEL MENÚ */
 
 ion-menu {
   --width: 290px;
 }
 
 
-/* =========================================
-   CABECERA DEL MENÚ
-   ========================================= */
+/* CABECERA DEL MENÚ   */
 
 ion-menu ion-header ion-toolbar {
   --background: #080840;
@@ -26,9 +20,7 @@ ion-menu ion-header ion-toolbar {
 }
 
 
-/* =========================================
-   CONTENEDOR DE MARCA
-   ========================================= */
+/* CONTENEDOR DE MARCA */
 
 .menu-brand {
   display: flex;
@@ -45,10 +37,7 @@ ion-menu ion-header ion-toolbar {
 }
 
 
-/* =========================================
-   LOGO UAPA
-   FONDO BLANCO
-   ========================================= */
+/* LOGO FONDO BLANCO */
 
 .uapa-logo {
   width: 72px;
@@ -82,9 +71,7 @@ ion-menu ion-header ion-toolbar {
 }
 
 
-/* =========================================
-   TEXTO DEL MENÚ
-   ========================================= */
+/* TEXTO DEL MENÚ */
 
 .brand-text {
   display: flex;
@@ -105,9 +92,7 @@ ion-menu ion-header ion-toolbar {
 }
 
 
-/* =========================================
-   LISTA DEL MENÚ
-   ========================================= */
+/* LISTA DEL MENÚ */
 
 ion-menu ion-content {
   --background: #ffffff;
@@ -122,9 +107,7 @@ ion-menu ion-list {
 }
 
 
-/* =========================================
-   ELEMENTOS DEL MENÚ
-   ========================================= */
+/* ELEMENTOS DEL MENÚ */
 
 ion-menu ion-item {
   --background: transparent;
@@ -141,9 +124,7 @@ ion-menu ion-item {
 }
 
 
-/* =========================================
-   ICONOS DEL MENÚ
-   ========================================= */
+/* ICONOS DEL MENÚ */
 
 ion-menu ion-item ion-icon {
   color: #080840;
@@ -154,9 +135,7 @@ ion-menu ion-item ion-icon {
 }
 
 
-/* =========================================
-   TEXTO DE LOS ELEMENTOS
-   ========================================= */
+/* TEXTO DE LOS ELEMENTOS */
 
 ion-menu ion-item ion-label {
   color: #172033;
@@ -165,27 +144,21 @@ ion-menu ion-item ion-label {
 }
 
 
-/* =========================================
-   EFECTO AL PASAR EL MOUSE
-   ========================================= */
+/* EFECTO AL PASAR EL MOUSE */
 
 ion-menu ion-item:hover {
   --background: #f0f0fa;
 }
 
 
-/* =========================================
-   EFECTO AL PRESIONAR
-   ========================================= */
+/*  EFECTO AL PRESIONAR */
 
 ion-menu ion-item:active {
   --background: #e6e6f5;
 }
 
 
-/* =========================================
-   TÍTULOS DE SECCIÓN
-   ========================================= */
+/*TÍTULOS DE SECCIÓN*/
 
 .menu-section-title {
   padding: 18px 20px 7px;

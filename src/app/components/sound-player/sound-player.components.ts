@@ -757,6 +757,7 @@ export class SoundPlayerComponent
 
 
   constructor(
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     private jamendo: JamendoService
   ) {
 
