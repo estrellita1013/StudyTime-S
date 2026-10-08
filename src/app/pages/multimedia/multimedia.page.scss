@@ -1,0 +1,43 @@
+﻿.audio-intro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 18px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(8, 8, 64, 0.08);
+  border: 1px solid #eeeef5;
+}
+
+.audio-intro .media-icon {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  margin: 0;
+  border-radius: 16px;
+}
+
+.audio-intro .media-icon ion-icon {
+  font-size: 28px;
+}
+
+.audio-intro h2 {
+  margin: 0 0 5px;
+  color: #080840;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.audio-intro p {
+  margin: 0;
+  color: #687083;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.audio-info {
+  margin: 18px auto 10px;
+  display: flex;
+  width: fit-content;
+}

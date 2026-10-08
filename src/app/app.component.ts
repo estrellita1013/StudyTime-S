@@ -43,14 +43,13 @@ import {
     IonMenu,
     IonHeader,
     IonToolbar,
-    IonTitle,
     IonContent,
     IonList,
     IonItem,
     IonIcon,
     IonLabel,
     IonMenuToggle
-  ],
+],
 })
 export class AppComponent {
 

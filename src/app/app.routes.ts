@@ -1,9 +1,9 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'bienvenida', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'bienvenida', loadComponent: () => import('./pages/welcome/welcome.page').then(m => m.WelcomePage) },
-  { path: 'login', loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage) } ,
+  { path: 'login', loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage) },
   { path: 'tabs', loadChildren: () => import('./pages/tabs/tabs.routes').then(m => m.tabsRoutes) },
 
   // Dashboard
@@ -20,4 +20,5 @@ export const routes: Routes = [
   { path: 'notas', loadComponent: () => import('./pages/notes/notes.page').then(m => m.NotesPage) },
   { path: 'lugares', loadComponent: () => import('./pages/places/places.page').then(m => m.PlacesPage) },
   { path: 'bluetooth', loadComponent: () => import('./pages/bluetooth/bluetooth.page').then(m => m.BluetoothPage) },
+  { path: 'multimedia', loadComponent: () => import('./pages/multimedia/multimedia.page').then(m => m.MultimediaPage) },
 ];

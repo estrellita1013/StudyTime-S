@@ -1,0 +1,299 @@
+﻿<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Multimedia</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+
+  <div class="welcome">
+
+    <div class="st-label">
+      MULTIMEDIA
+    </div>
+
+    <h1>Aprende a tu manera</h1>
+
+    <p>
+      Encuentra videos y contenido para complementar tus estudios.
+    </p>
+
+  </div>
+
+
+  <ion-segment
+    [value]="tipo"
+    (ionChange)="cambiarTipo($event)"
+    class="media-segment">
+
+    <ion-segment-button value="videos">
+
+      <ion-icon name="videocam-outline"></ion-icon>
+
+      <ion-label>
+        Videos
+      </ion-label>
+
+    </ion-segment-button>
+
+
+    <ion-segment-button value="audio">
+
+      <ion-icon name="musical-notes-outline"></ion-icon>
+
+      <ion-label>
+        Audio
+      </ion-label>
+
+    </ion-segment-button>
+
+  </ion-segment>
+
+
+  @if (tipo === 'videos') {
+
+    <div class="section-heading">
+
+      <div class="st-label">
+        YOUTUBE
+      </div>
+
+      <h2>
+        Buscar contenido educativo
+      </h2>
+
+    </div>
+
+
+    <div class="search-box">
+
+      <ion-searchbar
+        [(ngModel)]="busqueda"
+        placeholder="Ej. informática gerencial"
+        search-icon="search-outline"
+        (keyup.enter)="buscarVideos()">
+      </ion-searchbar>
+
+
+      <ion-button
+        expand="block"
+        (click)="buscarVideos()"
+        [disabled]="cargando">
+
+        @if (cargando) {
+
+          <ion-spinner name="crescent"></ion-spinner>
+
+        } @else {
+
+          <ion-icon
+            slot="start"
+            name="search-outline">
+          </ion-icon>
+
+          Buscar en YouTube
+
+        }
+
+      </ion-button>
+
+    </div>
+
+
+    @if (error) {
+
+      <div class="error-box">
+
+        <ion-icon
+          name="alert-circle-outline">
+        </ion-icon>
+
+        <span>
+          {{ error }}
+        </span>
+
+      </div>
+
+    }
+
+
+    @if (videos.length > 0) {
+
+      <div class="section-heading results-title">
+
+        <div class="st-label">
+          RESULTADOS
+        </div>
+
+        <h2>
+          Videos encontrados
+        </h2>
+
+      </div>
+
+
+      @for (video of videos; track video.videoId) {
+
+        <ion-card class="video-card">
+
+          <img
+            [src]="video.thumbnail"
+            [alt]="video.title"
+            loading="lazy"
+          />
+
+
+          <ion-card-content>
+
+            <h3>
+              {{ video.title }}
+            </h3>
+
+
+            <div class="channel">
+
+              <ion-icon
+                name="logo-youtube">
+              </ion-icon>
+
+              {{ video.channelTitle }}
+
+            </div>
+
+
+            <p>
+              {{ video.description }}
+            </p>
+
+
+            <ion-button
+              expand="block"
+              (click)="abrirVideo(video)">
+
+              <ion-icon
+                slot="start"
+                name="play-circle-outline">
+              </ion-icon>
+
+              Ver video
+
+            </ion-button>
+
+          </ion-card-content>
+
+        </ion-card>
+
+      }
+
+    }
+
+
+    @if (!videos.length && !cargando && !error) {
+
+      <div class="empty-media">
+
+        <div class="media-icon">
+
+          <ion-icon
+            name="logo-youtube">
+          </ion-icon>
+
+        </div>
+
+
+        <h2>
+          Busca un tema para estudiar
+        </h2>
+
+
+        <p>
+          Escribe una materia, tema o concepto y StudyTime
+          buscará videos educativos directamente en YouTube.
+        </p>
+
+
+        <div class="media-info">
+
+          <ion-icon
+            name="search-outline">
+          </ion-icon>
+
+          <span>
+            Contenido educativo de YouTube
+          </span>
+
+        </div>
+
+      </div>
+
+    }
+
+  }
+
+
+  @if (tipo === 'audio') {
+
+    <div class="section-heading">
+
+      <div class="st-label">
+        AUDIO PARA ESTUDIAR
+      </div>
+
+      <h2>
+        Biblioteca de audio
+      </h2>
+
+    </div>
+
+
+    <div class="audio-intro">
+
+      <div class="media-icon">
+
+        <ion-icon
+          name="musical-notes-outline">
+        </ion-icon>
+
+      </div>
+
+      <div>
+
+        <h2>
+          Sonidos para concentrarte
+        </h2>
+
+        <p>
+          Elige un sonido de fondo para acompañar
+          tus sesiones de estudio.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <app-sound-player></app-sound-player>
+
+
+    <div class="media-info audio-info">
+
+      <ion-icon
+        name="library-outline">
+      </ion-icon>
+
+      <span>
+        Audio disponible sin salir de StudyTime
+      </span>
+
+    </div>
+
+  }
+
+</ion-content>

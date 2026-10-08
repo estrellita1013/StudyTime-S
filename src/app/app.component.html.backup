@@ -1,6 +1,6 @@
-﻿<ion-app>
+<ion-app>
 
-  <!-- MENÃš LATERAL -->
+  <!-- MENÚ LATERAL -->
   <ion-menu contentId="main-content" type="overlay">
 
     <ion-header>
@@ -16,9 +16,9 @@
             />
           </div>
 
-          <!-- DESCRIPCIÃ“N -->
+          <!-- DESCRIPCIÓN -->
           <div class="brand-text">
-            <span>GestiÃ³n de estudio</span>
+            <span>Gestión de estudio</span>
           </div>
 
         </div>
@@ -120,7 +120,7 @@
         </ion-menu-toggle>
 
 
-        <!-- ESTADÃSTICAS -->
+        <!-- ESTADÍSTICAS -->
         <ion-menu-toggle>
           <ion-item
             button
@@ -132,15 +132,15 @@
               name="stats-chart-outline">
             </ion-icon>
 
-            <ion-label>EstadÃ­sticas</ion-label>
+            <ion-label>Estadísticas</ion-label>
 
           </ion-item>
         </ion-menu-toggle>
 
 
-        <!-- ORGANIZACIÃ“N -->
+        <!-- ORGANIZACIÓN -->
         <div class="menu-section-title">
-          ORGANIZACIÃ“N
+          ORGANIZACIÓN
         </div>
 
 
@@ -180,27 +180,7 @@
         </ion-menu-toggle>
 
 
-        <!-- MULTIMEDIA -->
-<div class="menu-section-title">
-  MULTIMEDIA
-</div>
-
-<ion-menu-toggle>
-  <ion-item
-    button
-    routerLink="/multimedia"
-    lines="none">
-
-    <ion-icon
-      slot="start"
-      name="play-circle-outline">
-    </ion-icon>
-
-    <ion-label>Multimedia</ion-label>
-
-  </ion-item>
-</ion-menu-toggle>
-<!-- HERRAMIENTAS -->
+        <!-- HERRAMIENTAS -->
         <div class="menu-section-title">
           HERRAMIENTAS
         </div>
