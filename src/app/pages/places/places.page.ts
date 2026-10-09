@@ -6,12 +6,10 @@ import {
 import * as L from 'leaflet';
 import { Geolocation } from '@capacitor/geolocation';
 
-// Lugares de ejemplo: reemplaza nombre y coordenadas por los de tu campus o biblioteca.
-// (En Google Maps: clic derecho sobre el lugar y copia las coordenadas.)
 const PLACES = [
-  { name: 'Biblioteca', desc: 'Zona de silencio', lat: 18.4861, lng: -69.9312 },
-  { name: 'Aula de estudio', desc: 'Ideal para sesiones largas', lat: 18.488, lng: -69.929 },
-  { name: 'Cafetería', desc: 'Buen lugar para repasar en grupo', lat: 18.4845, lng: -69.9335 },
+  { name: 'Biblioteca Nacional Pedro Henríquez Ureña', desc: 'Plaza de la Cultura, Santo Domingo', lat: 18.47082, lng: -69.90783 },
+  { name: 'Biblioteca Pedro Mir — UASD', desc: 'Ciudad Universitaria, Santo Domingo', lat: 18.46146, lng: -69.91794 },
+  { name: 'Parque Central de Sabaneta', desc: 'San Ignacio de Sabaneta, Santiago Rodríguez', lat: 19.47566, lng: -71.3418 },
 ];
 
 @Component({
