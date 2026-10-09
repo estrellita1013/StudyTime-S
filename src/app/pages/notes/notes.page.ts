@@ -20,7 +20,7 @@ import { StorageService } from '../../services/storage.service';
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start"><ion-back-button defaultHref="/tabs/perfil" text=""></ion-back-button></ion-buttons>
-        <ion-title>Notas</ion-title>
+        <ion-title>Notas ({{ notes.length }})</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -57,6 +57,7 @@ import { StorageService } from '../../services/storage.service';
     ion-item { --background: #fff; --border-radius: 16px; margin-bottom: 8px; }
   `],
 })
+/* Agregado por Alex Santana */
 export class NotesPage {
   notes: Note[] = [];
   text = '';
