@@ -70,3 +70,5 @@ export class BluetoothPage {
     this.scanning = false;
   }
 }
+
+/* esto le pertenece a Alex Santana */
