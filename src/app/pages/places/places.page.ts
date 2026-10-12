@@ -10,6 +10,7 @@ const PLACES = [
   { name: 'Biblioteca Nacional Pedro Henríquez Ureña', desc: 'Plaza de la Cultura, Santo Domingo', lat: 18.47082, lng: -69.90783 },
   { name: 'Biblioteca Pedro Mir — UASD', desc: 'Ciudad Universitaria, Santo Domingo', lat: 18.46146, lng: -69.91794 },
   { name: 'Parque Central de Sabaneta', desc: 'San Ignacio de Sabaneta, Santiago Rodríguez', lat: 19.47566, lng: -71.3418 },
+  { name: 'Parque Mirador del Este', desc: 'Área verde y recreativa en Santo Domingo Este', lat: 18.47946, lng: -69.85326 },
 ];
 
 @Component({
