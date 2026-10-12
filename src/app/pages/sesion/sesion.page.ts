@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import {
   IonHeader,
@@ -178,19 +178,17 @@ import { SoundPlayerComponent } from '../../components/sound-player/sound-player
 })
 export class SessionPage {
 
-  constructor(
-    public timer: TimerService,
-    private storage: StorageService,
-    private toast: ToastController,
-    private nav: NavController,
-  ) {
+  public timer = inject(TimerService);
+  private storage = inject(StorageService);
+  private toast = inject(ToastController);
+  private nav = inject(NavController);
 
+  constructor() {
     addIcons({
       pauseOutline,
       playOutline,
       stopOutline,
     });
-
   }
 
   get label() {

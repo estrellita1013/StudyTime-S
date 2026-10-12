@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -158,13 +158,13 @@ export class HomePage {
   ];
 
 
-  constructor(
-    public net: NetworkService,
-    public timer: TimerService,
+  public net = inject(NetworkService);
+  public timer = inject(TimerService);
 
-    private storage: StorageService,
-    private api: ApiService
-  ) {
+  private storage = inject(StorageService);
+  private api = inject(ApiService);
+
+  constructor() {
 
     addIcons({
       wifiOutline,

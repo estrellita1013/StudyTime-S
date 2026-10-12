@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonList, IonItem, IonLabel,
@@ -50,10 +50,10 @@ import { fmtHM } from '../../utils/time';
   `],
 })
 export class HistoryPage {
+  private storage = inject(StorageService);
+  private alert = inject(AlertController);
   sessions: Session[] = [];
   fmt = fmtHM;
-
-  constructor(private storage: StorageService, private alert: AlertController) {}
 
   ionViewWillEnter() { return this.load(); }
   async load() { this.sessions = await this.storage.getSessions(); }

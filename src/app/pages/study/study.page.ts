@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonSelect, IonSelectOption,
@@ -69,7 +69,9 @@ export class StudyPage {
   activities = ACTIVITIES;
   subjects: Subject[] = [];
 
-  constructor(public timer: TimerService, private storage: StorageService, private nav: NavController) {}
+  public timer = inject(TimerService);
+  private storage = inject(StorageService);
+  private nav = inject(NavController);
 
   async ionViewWillEnter() { this.subjects = await this.storage.getSubjects(); }
 

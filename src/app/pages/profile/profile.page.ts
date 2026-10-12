@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import {
@@ -392,6 +392,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfilePage {
 
+  private storage = inject(StorageService);
+  private api = inject(ApiService);
+  private auth = inject(AuthService);
+  private alert = inject(AlertController);
+  private toast = inject(ToastController);
+  private nav = inject(NavController);
+
   profile: Profile = {
     name: '',
     career: '',
@@ -399,14 +406,7 @@ export class ProfilePage {
   };
 
 
-  constructor(
-    private storage: StorageService,
-    private api: ApiService,
-    private auth: AuthService,
-    private alert: AlertController,
-    private toast: ToastController,
-    private nav: NavController,
-  ) {
+  constructor() {
 
     /* =========================
        REGISTRAR ICONOS

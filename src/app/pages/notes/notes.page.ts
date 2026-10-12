@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -58,11 +58,11 @@ import { StorageService } from '../../services/storage.service';
   `],
 })
 export class NotesPage {
+  private readonly storage = inject(StorageService);
+
   notes: Note[] = [];
   text = '';
   photo?: string;
-
-  constructor(private storage: StorageService) {}
 
   async ionViewWillEnter() { this.notes = await this.storage.getNotes(); }
 

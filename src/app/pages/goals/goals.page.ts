@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonInput, IonButton, IonIcon,
   IonSelect, IonSelectOption, IonSegment, IonSegmentButton, IonLabel, IonList, IonItem, IonProgressBar,
@@ -70,8 +70,7 @@ export class GoalsPage {
   hours = '';
   period: 'dia' | 'semana' = 'dia';
   fmt = fmtHM;
-
-  constructor(private storage: StorageService) {}
+  private storage = inject(StorageService);
 
   async ionViewWillEnter() { this.subjects = await this.storage.getSubjects(); await this.load(); }
 

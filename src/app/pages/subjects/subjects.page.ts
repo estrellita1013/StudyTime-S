@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonInput, IonButton, IonIcon,
@@ -52,8 +52,7 @@ import { StorageService } from '../../services/storage.service';
 export class SubjectsPage {
   subjects: Subject[] = [];
   name = '';
-
-  constructor(private storage: StorageService) {}
+  private readonly storage = inject(StorageService);
 
   async ionViewWillEnter() { this.subjects = await this.storage.getSubjects(); }
 

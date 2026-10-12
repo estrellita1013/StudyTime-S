@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonSegment, IonSegmentButton,
   IonLabel, IonButton, IonIcon, IonButtons, IonBackButton,
@@ -114,8 +114,7 @@ export class StatsPage {
   weekGoalH = 0;
   diff = 0;
   fmt = fmtHM;
-
-  constructor(private storage: StorageService) {}
+  private readonly storage = inject(StorageService);
 
   ionViewWillEnter() { return this.calc(); }
   setPeriod(p: Period) { this.period = p; this.calc(); }

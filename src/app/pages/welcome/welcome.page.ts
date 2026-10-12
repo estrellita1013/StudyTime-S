@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { IonButton, IonContent, IonIcon, NavController } from '@ionic/angular';
 import { ProgressRingComponent } from '../../components/progress-ring/progress-ring.components';
 import { StorageService } from '../../services/storage.service';
@@ -42,11 +42,13 @@ import { fmtHM, startOfToday } from '../../utils/time';
   `],
 })
 export class WelcomePage {
+  private readonly storage = inject(StorageService);
+  private readonly auth = inject(AuthService);
+  private readonly nav = inject(NavController);
+
   today = 0;
   goal = 4 * 3600;
   fmt = fmtHM;
-
-  constructor(private storage: StorageService, private auth: AuthService, private nav: NavController) {}
 
   async ionViewWillEnter() {
     if (await this.auth.isLogged()) { this.enter(); return; } // ya habías iniciado sesión

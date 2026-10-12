@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 
 interface User { name: string; email: string; hash: string; }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private storage: StorageService) {}
+  private storage = inject(StorageService);
 
   // Cifra la contraseña. Si el navegador no ofrece crypto.subtle (por ejemplo con http://IP),
   // usa una codificación simple solo para la demostración.

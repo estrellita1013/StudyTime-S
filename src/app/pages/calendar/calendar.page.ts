@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton, IonDatetime, IonInput, IonButton,
@@ -89,8 +89,7 @@ export class CalendarPage {
   subject = '';
   marks: { date: string; textColor: string; backgroundColor: string }[] = [];
   label = dueLabel;
-
-  constructor(private storage: StorageService) {}
+  private storage = inject(StorageService);
 
   async ionViewWillEnter() { this.subjects = await this.storage.getSubjects(); await this.load(); }
 

@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
@@ -49,9 +49,7 @@ export class YouTubeService {
   private readonly apiKey =
     'AIzaSyACgau7enamMiOjXIt7_SU0xHFsBLnjBYQ';
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  private readonly http = inject(HttpClient);
 
   async buscarVideos(
     texto: string

@@ -69,12 +69,13 @@ import { fmtHM } from '../../utils/time';
 })
 export class SubjectDetailPage {
   private route = inject(ActivatedRoute);
+  private storage = inject(StorageService);
+  private timer = inject(TimerService);
+  private nav = inject(NavController);
   subject?: Subject;
   topic = '';
   studied = 0;
   fmt = fmtHM;
-
-  constructor(private storage: StorageService, private timer: TimerService, private nav: NavController) {}
 
   async ionViewWillEnter() {
     const id = this.route.snapshot.paramMap.get('id');

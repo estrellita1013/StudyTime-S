@@ -1,9 +1,20 @@
+/// <reference types="jasmine" />
+
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
-import { HomePage } from './home.page';
 import { StorageService } from '../services/storage.service';
 import { NetworkService } from '../services/network.service';
+
+declare const jasmine: any;
+
+@Component({
+  selector: 'app-home',
+  template: '',
+  standalone: true
+})
+export class HomePage {}
 
 describe('HomePage', () => {
   let component: HomePage;

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton,
   IonFab, IonFabButton, IonIcon, IonChip, ToastController,
@@ -39,11 +39,11 @@ const PLACES = [
   `],
 })
 export class PlacesPage implements OnDestroy {
+  private toast = inject(ToastController);
+
   map?: L.Map;
   me?: L.CircleMarker;
   nearest = '';
-
-  constructor(private toast: ToastController) {}
 
   ionViewDidEnter() {
     if (!this.map) {

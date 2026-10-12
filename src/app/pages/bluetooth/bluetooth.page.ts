@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, inject } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent, IonButtons, IonBackButton,
   IonButton, IonIcon, IonList, IonItem, IonLabel, ToastController,
@@ -42,7 +42,8 @@ export class BluetoothPage {
   devices: Found[] = [];
   scanning = false;
 
-  constructor(private zone: NgZone, private toast: ToastController) {}
+  private readonly zone = inject(NgZone);
+  private readonly toast = inject(ToastController);
 
   async scan() {
     this.devices = [];

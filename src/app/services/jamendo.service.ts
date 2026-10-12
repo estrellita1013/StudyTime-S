@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
@@ -39,7 +39,7 @@ export class JamendoService {
    */
   private readonly clientId = 'PEGA_AQUI_TU_CLIENT_ID';
 
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   async buscarAudios(texto: string): Promise<JamendoTrack[]> {
 

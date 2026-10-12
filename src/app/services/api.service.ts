@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, timeout } from 'rxjs';
 
@@ -12,10 +12,8 @@ export class ApiService {
 
   private adviceUrl = 'https://api.adviceslip.com/advice';
 
-  constructor(
-    private http: HttpClient,
-    private storage: StorageService
-  ) {}
+  private http = inject(HttpClient);
+  private storage = inject(StorageService);
 
   // =========================================
   // CONSEJOS DE RESPALDO
