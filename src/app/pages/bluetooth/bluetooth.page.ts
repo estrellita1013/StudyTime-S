@@ -7,7 +7,7 @@ import { Capacitor } from '@capacitor/core';
 import { BleClient } from '@capacitor-community/bluetooth-le';
 
 interface Found { id: string; name: string; rssi?: number; }
-
+/*insert bluetooh*/
 @Component({
   selector: 'app-bluetooth',
   standalone: true,
