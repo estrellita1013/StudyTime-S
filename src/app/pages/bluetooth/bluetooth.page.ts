@@ -72,4 +72,4 @@ export class BluetoothPage {
   }
 }
 
-/* esto le pertenece a Alex Santana  */
+/* esto le pertenece a Alex Santana */
